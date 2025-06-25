@@ -19,7 +19,17 @@ public class ContaCorrenteRepository : IContaCorrenteRepository
     {
         using var connection = new SqliteConnection(_config.Name);
         return await connection.QueryFirstOrDefaultAsync<ContaCorrente>(
-            "SELECT idcontacorrente, ativo FROM contacorrente WHERE idcontacorrente = @id",
+            "SELECT idcontacorrente, numero, nome, ativo FROM contacorrente WHERE idcontacorrente = @id",
             new { id });
+    }
+
+    public async Task<decimal> SomarMovimentosAsync(string idConta, string tipo)
+    {
+        using var conn = new SqliteConnection(_config.Name);
+        var result = await conn.ExecuteScalarAsync<decimal?>(
+            "SELECT SUM(valor) FROM movimento WHERE idcontacorrente = @id AND tipomovimento = @tipo",
+            new { id = idConta, tipo });
+
+        return result ?? 0.00m;
     }
 }
