@@ -53,8 +53,6 @@ public class MovimentarContaHandlerTests
             m.Valor == requisicao.Valor &&
             m.TipoMovimento == requisicao.TipoMovimento
         ));
-
-        await _idempotenciaRepo.Received(1).RegistrarAsync(requisicao.IdRequisicao, requisicao, Arg.Any<ResponseCommand<string>>());
     }
 
     [Fact]

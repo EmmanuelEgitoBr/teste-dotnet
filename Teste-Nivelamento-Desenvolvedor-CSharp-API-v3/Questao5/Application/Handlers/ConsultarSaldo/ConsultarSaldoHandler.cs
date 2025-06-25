@@ -7,10 +7,10 @@ using Questao5.Domain.Contracts.MovimentarConta;
 using Questao5.Domain.Enumerators;
 
 namespace Questao5.Application.Handlers.ConsultarSaldo;
-public class ConsultaSaldoHandler : IRequestHandler<ConsultarSaldoQuery, ResponseQuery<ConsultaSaldoDto>>
+public class ConsultarSaldoHandler : IRequestHandler<ConsultarSaldoQuery, ResponseQuery<ConsultaSaldoDto>>
 {
     private readonly IContaCorrenteRepository _contaRepo;
-    public ConsultaSaldoHandler(
+    public ConsultarSaldoHandler(
     IContaCorrenteRepository contaRepo)
     {
         _contaRepo = contaRepo;
